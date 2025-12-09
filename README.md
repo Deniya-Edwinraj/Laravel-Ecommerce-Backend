@@ -119,20 +119,27 @@ These routes match exactly your `routes/api.php`.
 | GET | /api/categories/{id} | Show category |
 
 ### Products
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/products | List products |
-| GET | /api/products/{id} | Show product |
+| Method | Endpoint                    | Description                |
+| ------ | --------------------------- | -------------------------- |
+| GET    | /api/products               | List products              |
+| GET    | /api/products/most-sold     | Most sold products         |
+| GET    | /api/products/most-reviewed | Most reviewed products     |
+| GET    | /api/products/{id}          | Show product details       |
+| GET    | /api/products/{id}/reviews  | List reviews for a product |
 
 ---
 
 ## Protected Routes (Require Token)
 
 ### Authenticated User
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /api/logout | Logout |
-| GET | /api/user | Get authenticated user |
+| Method | Endpoint              | Description                      |
+| ------ | --------------------- | -------------------------------- |
+| POST   | /api/logout           | Logout                           |
+| GET    | /api/user             | Get authenticated user (raw)     |
+| GET    | /api/profile          | Get profile details              |
+| PUT    | /api/profile          | Update profile details           |
+| PUT    | /api/profile/password | Update/change password           |
+| GET    | /api/profile/stats    | Get profile stats (user metrics) |
 
 ---
 
@@ -155,11 +162,12 @@ These routes match exactly your `routes/api.php`.
 ---
 
 ## Reviews
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /api/reviews | Create review |
-| PUT | /api/reviews/{id} | Update review |
-| DELETE | /api/reviews/{id} | Delete review |
+| Method | Endpoint                | Description      |
+| ------ | ----------------------- | ---------------- |
+| GET    | /api/reviews/my-reviews | List my reviews  |
+| POST   | /api/reviews            | Create review    |
+| PUT    | /api/reviews/{id}       | Update my review |
+| DELETE | /api/reviews/{id}       | Delete my review |
 
 ---
 
@@ -184,12 +192,37 @@ These routes match exactly your `routes/api.php`.
 ---
 
 ## Orders
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/orders | Order history |
-| POST | /api/orders | Place order |
-| GET | /api/orders/{id} | View order |
-| POST | /api/orders/{id}/cancel | Cancel order |
+| Method | Endpoint                | Description                   |
+| ------ | ----------------------- | ----------------------------- |
+| GET    | /api/orders             | List my orders                |
+| GET    | /api/orders/history     | Full order history            |
+| GET    | /api/orders/recent      | Recently placed orders        |
+| GET    | /api/orders/statistics  | Order statistics (user-level) |
+| POST   | /api/orders             | Place order                   |
+| GET    | /api/orders/{id}        | View single order             |
+| POST   | /api/orders/{id}/cancel | Request/cancel an order       |
+
+---
+
+## Orders – Admin Routes
+| Method | Endpoint                        | Description                 |
+| ------ | ------------------------------- | --------------------------- |
+| GET    | /api/admin/orders               | List all orders (admin)     |
+| PUT    | /api/orders/{id}/status         | Update order status         |
+| PUT    | /api/orders/{id}/payment-status | Update order payment status |
+
+---
+
+## Admin Users Management
+| Method | Endpoint                       | Description                         |
+| ------ | ------------------------------ | ----------------------------------- |
+| GET    | /api/admin/users               | List all users                      |
+| GET    | /api/admin/users/stats         | User statistics (admin)             |
+| POST   | /api/admin/users               | Create user (admin-created account) |
+| GET    | /api/admin/users/{id}          | Get single user details             |
+| PUT    | /api/admin/users/{id}          | Update user details                 |
+| PUT    | /api/admin/users/{id}/password | Update user password                |
+| DELETE | /api/admin/users/{id}          | Delete user                         |
 
 ---
 
